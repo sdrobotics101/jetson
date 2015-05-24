@@ -1,2 +1,6 @@
 find_package(OpenCV REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system)
+include_directories(${Boost_INCLUDE_DIRS})
 add_executable(server server.cpp)
+add_executable(boost_server boost_server.cpp N2MStandardPacket.cpp)
+target_link_libraries(boost_server ${Boost_LIBRARIES})
