@@ -9,14 +9,11 @@
 int main(int argc, char* argv[])
 {
     N2MStandardPacket send_packet;
+    send_packet.set_vel_x(123.4);
     unsigned char send_buffer[send_packet.size()];
     send_packet.get_buffer(send_buffer);
-    printf("Send data: ");
-    for (size_t i = 0; i < send_packet.size(); i++)
-    {
-        printf("%d", send_buffer[i]);
-    }
-    printf("\n");
+    std::cout << "Sending following data:" << std::endl;
+    std::cout << "vel_x = " << send_packet.get_vel_x() << std::endl;
     try
     {
         boost::asio::io_service io_service;
