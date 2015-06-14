@@ -81,6 +81,7 @@ void NetworkServer::receive_packet()
         if (error && error != boost::asio::error::message_size)
             throw boost::system::system_error(error);
         m2n_standard_packet.read_buffer(recv_buffer);
+        determined_remote_endpoint = true;
     }
     catch (std::exception& e)
     {
