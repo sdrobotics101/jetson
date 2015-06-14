@@ -67,7 +67,7 @@ void N2MStandardPacket::set_rot_x(double rot_x)
 {
     int32_t rot_x_q = (int32_t)round(rot_x * pow(2, Q));
     std::lock_guard<std::mutex> packet_lock(packet_mtx);
-    n2m_standard_packet.vel_x = rot_x_q;
+    n2m_standard_packet.rot_x = rot_x_q;
 }
 
 double N2MStandardPacket::get_rot_x()
@@ -110,9 +110,7 @@ size_t N2MStandardPacket::size() const
 void N2MStandardPacket::read_buffer(unsigned char buffer[])
 {
     std::lock_guard<std::mutex> packet_lock(packet_mtx);
-    n2m_standard_packet_t old_n2m_standard_packet = n2m_standard_packet;
     memcpy(&n2m_standard_packet, buffer, n2m_standard_packet_size);
-    n2m_standard_packet = old_n2m_standard_packet;
 }
 
 void N2MStandardPacket::get_buffer(unsigned char buffer[])
