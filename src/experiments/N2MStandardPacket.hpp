@@ -23,6 +23,8 @@ public:
     double get_rot_y();
     void set_rot_z(double rot_z);
     double get_rot_z();
+    void set_mode(std::bitset<32> mode);
+    std::bitset<32> get_mode();
     size_t size() const;
     void read_buffer(unsigned char buffer[]);
     void get_buffer(unsigned char buffer[]);

@@ -102,6 +102,18 @@ double N2MStandardPacket::get_rot_z()
     return ((double)n2m_standard_packet.rot_z) * pow(2, -Q);
 }
 
+void N2MStandardPacket::set_mode(std::bitset<32> mode)
+{
+    std::lock_guard<std::mutex> packet_lock(packet_mtx);
+    n2m_standard_packet.mode = mode.to_ulong();
+}
+
+std::bitset<32> N2MStandardPacket::get_mode()
+{
+    std::lock_guard<std::mutex> packet_lock(packet_mtx);
+    return std::bitset<32>(n2m_standard_packet.mode);
+}
+
 size_t N2MStandardPacket::size() const
 {
     return n2m_standard_packet_size;
