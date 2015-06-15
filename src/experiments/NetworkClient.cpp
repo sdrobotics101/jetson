@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <thread>
 #include <chrono>
 #include <boost/array.hpp>
@@ -25,15 +26,12 @@ NetworkClient::~NetworkClient()
     delete io_service;
 }
 
-void NetworkClient::open()
+void NetworkClient::open(std::string ip_address, int port_number)
 {
     try
     {
         io_service = new boost::asio::io_service();
-        //resolver = new boost::asio::ip::udp::resolver(*io_service);
-        //query = new boost::asio::ip::udp::resolver::query(boost::asio::ip::udp::v4(), "127.0.0.1", "8888");
-        //receiver_endpoint = resolver->resolve(*query);
-        receiver_endpoint = new boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"), 8888);
+        receiver_endpoint = new boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string(ip_address), port_number);
         socket = new boost::asio::ip::udp::socket(*io_service);
         socket->open(boost::asio::ip::udp::v4());
     }

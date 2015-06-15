@@ -12,7 +12,7 @@ class NetworkClient {
 public:
     NetworkClient();
     ~NetworkClient();
-    void open();
+    void open(std::string ip_address, int port_number);
     void start();
     N2MStandardPacket *get_n2m_standard_packet();
     M2NStandardPacket *get_m2n_standard_packet();

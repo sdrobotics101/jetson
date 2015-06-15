@@ -2,13 +2,11 @@
 #include <chrono>
 
 #include "NetworkClient.hpp"
-#include "N2MStandardPacket.hpp"
-#include "M2NStandardPacket.hpp"
 
 int main(int argc, char* argv[])
 {
     NetworkClient client;
-    client.open();
+    client.open("127.0.0.1", 8888);
     client.start();
     for (;;)
     {
