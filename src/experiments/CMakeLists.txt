@@ -6,3 +6,5 @@ add_executable(boost_server boost_server.cpp N2MStandardPacket.cpp M2NStandardPa
 target_link_libraries(boost_server ${Boost_LIBRARIES})
 add_executable(networkserver_test networkserver_test.cpp NetworkServer.cpp N2MStandardPacket.cpp M2NStandardPacket.cpp)
 target_link_libraries(networkserver_test ${Boost_LIBRARIES})
+add_executable(networkclient_test networkclient_test.cpp NetworkClient.cpp N2MStandardPacket.cpp M2NStandardPacket.cpp)
+target_link_libraries(networkclient_test ${Boost_LIBRARIES})
