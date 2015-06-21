@@ -2,8 +2,7 @@
 #define NetworkServer_hpp
 
 #include <thread>
-#include <boost/array.hpp>
-#include <boost/asio.hpp>
+#include <asio.hpp>
 
 #include "N2MStandardPacket.hpp"
 #include "M2NStandardPacket.hpp"
@@ -26,9 +25,9 @@ private:
     bool is_running;
     std::thread *send_thread;
     std::thread *receive_thread;
-    boost::asio::io_service *io_service;
-    boost::asio::ip::udp::socket *socket;
-    boost::asio::ip::udp::endpoint remote_endpoint;
+    asio::io_service *io_service;
+    asio::ip::udp::socket *socket;
+    asio::ip::udp::endpoint remote_endpoint;
     bool determined_remote_endpoint;
 };
 

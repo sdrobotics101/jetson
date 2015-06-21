@@ -2,8 +2,7 @@
 #include <string>
 #include <thread>
 #include <chrono>
-#include <boost/array.hpp>
-#include <boost/asio.hpp>
+#include <asio.hpp>
 
 #include "NetworkClient.hpp"
 #include "N2MStandardPacket.hpp"
@@ -30,10 +29,10 @@ void NetworkClient::open(std::string ip_address, int port_number)
 {
     try
     {
-        io_service = new boost::asio::io_service();
-        receiver_endpoint = new boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string(ip_address), port_number);
-        socket = new boost::asio::ip::udp::socket(*io_service);
-        socket->open(boost::asio::ip::udp::v4());
+        io_service = new asio::io_service();
+        receiver_endpoint = new asio::ip::udp::endpoint(asio::ip::address::from_string(ip_address), port_number);
+        socket = new asio::ip::udp::socket(*io_service);
+        socket->open(asio::ip::udp::v4());
     }
     catch (std::exception& e)
     {
@@ -78,11 +77,11 @@ void NetworkClient::receive_packet()
     try
     {
         unsigned char recv_buffer[n2m_standard_packet.size()];
-        boost::system::error_code error;
-        boost::asio::ip::udp::endpoint sender_endpoint;
-        socket->receive_from(boost::asio::buffer(recv_buffer, n2m_standard_packet.size()), sender_endpoint, 0, error);
-        if (error && error != boost::asio::error::message_size)
-            throw boost::system::system_error(error);
+        asio::error_code error;
+        asio::ip::udp::endpoint sender_endpoint;
+        socket->receive_from(asio::buffer(recv_buffer, n2m_standard_packet.size()), sender_endpoint, 0, error);
+        if (error && error != asio::error::message_size)
+            throw asio::system_error(error);
         n2m_standard_packet.read_buffer(recv_buffer);
     }
     catch (std::exception& e)
@@ -97,8 +96,8 @@ void NetworkClient::send_packet()
     {
         unsigned char send_buffer[m2n_standard_packet.size()];
         m2n_standard_packet.get_buffer(send_buffer);
-        boost::system::error_code ignored_error;
-        socket->send_to(boost::asio::buffer(send_buffer, n2m_standard_packet.size()), *receiver_endpoint, 0, ignored_error);
+        asio::error_code ignored_error;
+        socket->send_to(asio::buffer(send_buffer, n2m_standard_packet.size()), *receiver_endpoint, 0, ignored_error);
     }
     catch (std::exception& e)
     {

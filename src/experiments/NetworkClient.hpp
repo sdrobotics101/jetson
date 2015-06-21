@@ -2,8 +2,7 @@
 #define NetworkClient_hpp
 
 #include <thread>
-#include <boost/array.hpp>
-#include <boost/asio.hpp>
+#include <asio.hpp>
 
 #include "N2MStandardPacket.hpp"
 #include "M2NStandardPacket.hpp"
@@ -26,11 +25,11 @@ private:
     bool is_running;
     std::thread *send_thread;
     std::thread *receive_thread;
-    boost::asio::io_service *io_service;
-    boost::asio::ip::udp::resolver *resolver;
-    boost::asio::ip::udp::resolver::query *query;
-    boost::asio::ip::udp::endpoint *receiver_endpoint;
-    boost::asio::ip::udp::socket *socket;
+    asio::io_service *io_service;
+    asio::ip::udp::resolver *resolver;
+    asio::ip::udp::resolver::query *query;
+    asio::ip::udp::endpoint *receiver_endpoint;
+    asio::ip::udp::socket *socket;
 };
 
 #endif // NetworkClient_hpp

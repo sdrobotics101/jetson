@@ -1,8 +1,7 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include <boost/array.hpp>
-#include <boost/asio.hpp>
+#include <asio.hpp>
 
 #include "NetworkServer.hpp"
 #include "N2MStandardPacket.hpp"
@@ -29,8 +28,8 @@ void NetworkServer::open()
 {
     try
     {
-        io_service = new boost::asio::io_service();
-        socket = new boost::asio::ip::udp::socket(*io_service, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 8888));
+        io_service = new asio::io_service();
+        socket = new asio::ip::udp::socket(*io_service, asio::ip::udp::endpoint(asio::ip::udp::v4(), 8888));
     }
     catch (std::exception& e)
     {
@@ -76,10 +75,10 @@ void NetworkServer::receive_packet()
     try
     {
         unsigned char recv_buffer[m2n_standard_packet.size()];
-        boost::system::error_code error;
-        socket->receive_from(boost::asio::buffer(recv_buffer, m2n_standard_packet.size()), remote_endpoint, 0, error);
-        if (error && error != boost::asio::error::message_size)
-            throw boost::system::system_error(error);
+        asio::error_code error;
+        socket->receive_from(asio::buffer(recv_buffer, m2n_standard_packet.size()), remote_endpoint, 0, error);
+        if (error && error != asio::error::message_size)
+            throw asio::system_error(error);
         m2n_standard_packet.read_buffer(recv_buffer);
         determined_remote_endpoint = true;
     }
@@ -95,8 +94,8 @@ void NetworkServer::send_packet()
     {
         unsigned char send_buffer[n2m_standard_packet.size()];
         n2m_standard_packet.get_buffer(send_buffer);
-        boost::system::error_code ignored_error;
-        socket->send_to(boost::asio::buffer(send_buffer, n2m_standard_packet.size()), remote_endpoint, 0, ignored_error);
+        asio::error_code ignored_error;
+        socket->send_to(asio::buffer(send_buffer, n2m_standard_packet.size()), remote_endpoint, 0, ignored_error);
     }
     catch (std::exception& e)
     {
