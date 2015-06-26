@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <string>
 #include "BaseVideoDevice.hpp"
-#include "NetworkServer.hpp"
+#include "Networking/NetworkServer.hpp"
 #include "RobotState.hpp"
 
 class Robot {
@@ -23,7 +23,6 @@ private:
     BaseVideoDevice *forward_camera;
     RobotState *state;
     int period; // ms
-    std::string int_base;
 };
 
 #endif // Robot_hpp

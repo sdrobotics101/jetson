@@ -1,5 +1,0 @@
-* Robot is a singleton
-* RobotState is abstract
-* Robot has a RobotState pointer member and calls state->update() in a loop
-* The state can be set using Robot::set_state(new AutonomousState()) or Robot::set_state(new TeleopState())
-* INCLUDE SOME SORT OF COMMAND SYSTEM - I.E. "SURFACECOMMAND", etc
