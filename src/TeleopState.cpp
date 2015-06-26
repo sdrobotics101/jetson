@@ -78,10 +78,46 @@ void TeleopState::teleop_periodic()
         }
         else if (input == "help")
         {
-            std::cout << "Available commands:" << std::endl << std::endl;
+            std::cout << "Available commands:" << std::endl;
             std::cout << std::right << std::setw(14) << "vel_x  "
                       << std::left << std::setw(8) << "double"
-                      << std::setw(0) << "set linear velocity along x-axis" << std::endl;
+                      << std::setw(0) << "set linear velocity along x-axis (%)" << std::endl;
+            std::cout << std::right << std::setw(14) << "vel_y  "
+                      << std::left << std::setw(8) << "double"
+                      << std::setw(0) << "set linear velocity along y-axis (%)" << std::endl;
+            std::cout << std::right << std::setw(14) << "pos_z  "
+                      << std::left << std::setw(8) << "double"
+                      << std::setw(0) << "set linear position along z-axis (m)" << std::endl;
+            std::cout << std::right << std::setw(14) << "rot_x  "
+                      << std::left << std::setw(8) << "double"
+                      << std::setw(0) << "set angular position along x-axis (deg)" << std::endl;
+            std::cout << std::right << std::setw(14) << "rot_y  "
+                      << std::left << std::setw(8) << "double"
+                      << std::setw(0) << "set angular position along y-axis (deg)" << std::endl;
+            std::cout << std::right << std::setw(14) << "rot_z  "
+                      << std::left << std::setw(8) << "double"
+                      << std::setw(0) << "set angular position along z-axis (deg)" << std::endl;
+            std::cout << std::right << std::setw(14) << "pos_z  "
+                      << std::left << std::setw(8) << "double"
+                      << std::setw(0) << "get linear position along z-axis (m)" << std::endl;
+            std::cout << std::right << std::setw(14) << "orient_x  "
+                      << std::left << std::setw(8) << ""
+                      << std::setw(0) << "get angular position along x-axis (deg)" << std::endl;
+            std::cout << std::right << std::setw(14) << "orient_y  "
+                      << std::left << std::setw(8) << ""
+                      << std::setw(0) << "get angular position along y-axis (deg)" << std::endl;
+            std::cout << std::right << std::setw(14) << "orient_z  "
+                      << std::left << std::setw(8) << ""
+                      << std::setw(0) << "get angular position along z-axis (deg)" << std::endl;
+            std::cout << std::right << std::setw(14) << "health  "
+                      << std::left << std::setw(8) << ""
+                      << std::setw(0) << "get health metric" << std::endl;
+            std::cout << std::right << std::setw(14) << "bat_v  "
+                      << std::left << std::setw(8) << ""
+                      << std::setw(0) << "get battery voltage (v)" << std::endl;
+            std::cout << std::right << std::setw(14) << "help  "
+                      << std::left << std::setw(8) << ""
+                      << std::setw(0) << "show this help" << std::endl;
         }
         else
             std::cout << input << ": command not found" << std::endl;
@@ -100,6 +136,31 @@ void TeleopState::teleop_periodic()
         {
             robot->get_microzed()->get_n2m_standard_packet()->set_vel_x(value);
             std::cout << "Set vel_x = " << value << std::endl;
+        }
+        else if (key == "vel_y")
+        {
+            robot->get_microzed()->get_n2m_standard_packet()->set_vel_y(value);
+            std::cout << "Set vel_y = " << value << std::endl;
+        }
+        else if (key == "pos_z")
+        {
+            robot->get_microzed()->get_n2m_standard_packet()->set_pos_z(value);
+            std::cout << "Set pos_z = " << value << std::endl;
+        }
+        else if (key == "rot_x")
+        {
+            robot->get_microzed()->get_n2m_standard_packet()->set_rot_x(value);
+            std::cout << "Set rot_x = " << value << std::endl;
+        }
+        else if (key == "rot_y")
+        {
+            robot->get_microzed()->get_n2m_standard_packet()->set_rot_y(value);
+            std::cout << "Set rot_y = " << value << std::endl;
+        }
+        else if (key == "rot_z")
+        {
+            robot->get_microzed()->get_n2m_standard_packet()->set_rot_z(value);
+            std::cout << "Set rot_z = " << value << std::endl;
         }
         else
             std::cout << key << ": command not found" << std::endl;
