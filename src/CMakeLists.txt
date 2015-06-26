@@ -3,7 +3,6 @@ set(ROBOSUB_JETSON_SOURCE
     AutonomousState.cpp
     BaseVideoDevice.cpp
     CLIOptions.cpp
-    HSVImage.cpp
     PausedState.cpp
     robosub_jetson.cpp
     Robot.cpp
@@ -15,7 +14,6 @@ set(ROBOSUB_JETSON_HEADERS
     AutonomousState.hpp
     BaseVideoDevice.hpp
     CLIOptions.hpp
-    HSVImage.hpp
     PausedState.hpp
     Robot.hpp
     RobotState.hpp
@@ -24,6 +22,7 @@ set(ROBOSUB_JETSON_HEADERS
    )
 add_subdirectory(Commands)
 add_subdirectory(Networking)
+add_subdirectory(CV)
 add_executable(robosub_jetson ${ROBOSUB_JETSON_SOURCE} ${ROBOSUB_JETSON_HEADERS})
 target_link_libraries(robosub_jetson ${OpenCV_LIBS})
 add_subdirectory(experiments)
