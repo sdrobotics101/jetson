@@ -23,7 +23,6 @@ private:
     BaseVideoDevice *forward_camera;
     RobotState *state;
     int period; // ms
-    std::string int_base;
 };
 
 #endif // Robot_hpp
