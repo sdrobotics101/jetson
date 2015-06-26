@@ -13,8 +13,6 @@ Robot* Robot::instance = NULL;
 Robot::Robot(RobotState* state)
 {
     period = 10; // ms
-    bat_v_threshold = 6.0; // V
-    num_base = NumberBase::DEC;
     set_state(state);
     microzed.open();
     microzed.start();

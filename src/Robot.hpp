@@ -23,9 +23,6 @@ private:
     BaseVideoDevice *forward_camera;
     RobotState *state;
     int period; // ms
-    enum class NumberBase { DEC, HEX, OCT };
-    NumberBase num_base;
-    double bat_v_threshold;
 };
 
 #endif // Robot_hpp
