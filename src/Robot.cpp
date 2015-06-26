@@ -5,7 +5,7 @@
 #include "PausedState.hpp"
 #include "BaseVideoDevice.hpp"
 #include "USBVideoDevice.hpp"
-#include "NetworkServer.hpp"
+#include "Networking/NetworkServer.hpp"
 #include "Robot.hpp"
 
 Robot* Robot::instance = NULL;

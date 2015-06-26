@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <string>
 #include "BaseVideoDevice.hpp"
-#include "NetworkServer.hpp"
+#include "Networking/NetworkServer.hpp"
 #include "RobotState.hpp"
 
 class Robot {
