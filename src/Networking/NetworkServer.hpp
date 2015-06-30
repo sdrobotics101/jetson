@@ -6,6 +6,7 @@
 
 #include "N2MStandardPacket.hpp"
 #include "M2NStandardPacket.hpp"
+#include "NetworkLogger.hpp"
 
 class NetworkServer {
 public:
@@ -22,6 +23,8 @@ private:
     void send_packet();
     N2MStandardPacket n2m_standard_packet;
     M2NStandardPacket m2n_standard_packet;
+    NetworkLogger n2m_logger;
+    NetworkLogger m2n_logger;
     bool is_running;
     std::thread *send_thread;
     std::thread *receive_thread;
