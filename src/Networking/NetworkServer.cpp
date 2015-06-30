@@ -4,6 +4,7 @@
 #include <asio.hpp>
 
 #include "NetworkServer.hpp"
+#include "NetworkLogger.hpp"
 #include "N2MStandardPacket.hpp"
 #include "M2NStandardPacket.hpp"
 
@@ -35,6 +36,8 @@ void NetworkServer::open()
     {
         std::cerr << e.what() << std::endl;
     }
+    n2m_logger.open("127.0.0.1", 8889);
+    m2n_logger.open("127.0.0.1", 8890);
 }
 
 void NetworkServer::start()
@@ -80,6 +83,7 @@ void NetworkServer::receive_packet()
         if (error && error != asio::error::message_size)
             throw asio::system_error(error);
         m2n_standard_packet.read_buffer(recv_buffer);
+        m2n_logger.send_packet(recv_buffer, m2n_standard_packet.size());
         determined_remote_endpoint = true;
     }
     catch (std::exception& e)
@@ -96,6 +100,7 @@ void NetworkServer::send_packet()
         n2m_standard_packet.get_buffer(send_buffer);
         asio::error_code ignored_error;
         socket->send_to(asio::buffer(send_buffer, n2m_standard_packet.size()), remote_endpoint, 0, ignored_error);
+        n2m_logger.send_packet(send_buffer, n2m_standard_packet.size());
     }
     catch (std::exception& e)
     {
