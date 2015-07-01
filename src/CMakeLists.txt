@@ -24,6 +24,7 @@ set(ROBOSUB_JETSON_HEADERS
    )
 add_subdirectory(Commands)
 add_subdirectory(Networking)
+include_directories(/usr/include/eigen3)
 add_executable(robosub_jetson ${ROBOSUB_JETSON_SOURCE} ${ROBOSUB_JETSON_HEADERS})
 target_link_libraries(robosub_jetson ${OpenCV_LIBS})
 add_subdirectory(experiments)
