@@ -8,8 +8,8 @@ class CommandGroup
 {
 public:
     CommandGroup();
-protected:
     void run();
+protected:
     void add_sequential(Command *command);
 private:
     std::vector<Command*> commands;
