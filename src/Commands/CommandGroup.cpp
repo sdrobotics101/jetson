@@ -15,7 +15,7 @@ void CommandGroup::run()
     }
 }
 
-void CommandGroup::add_command(Command *command)
+void CommandGroup::add_sequential(Command *command)
 {
     commands.push_back(command);
 }

@@ -10,7 +10,7 @@ public:
     CommandGroup();
 protected:
     void run();
-    void add_command(Command *command);
+    void add_sequential(Command *command);
 private:
     std::vector<Command*> commands;
 };
